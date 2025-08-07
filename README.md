@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🧱 Builder.io + Next.js Website
 
-## Getting Started
+This project is a fully customizable, performant website built using **Next.js** and **Builder.io**. It features editable pages and reusable components designed for seamless visual editing by non-developers.
 
-First, run the development server:
+## 🌐 Live Routes
+
+| Route         | Description                 |
+|---------------|-----------------------------|
+| `/`           | Home page (editable via Builder.io) |
+| `/posts`      | Blog listing page with pagination, search, filters |
+| `/post/:slug` | Dynamic blog detail page    |
+
+---
+
+## 🛠️ Tech Stack
+
+- **Next.js** (App Router)
+- **TypeScript**
+- **Tailwind CSS**
+- **Builder.io SDK**
+---
+
+## 📦 Custom Builder.io Components
+
+The following components are registered as **Builder.io blocks**, allowing them to be dragged, dropped, and customized visually:
+
+| Component         | Description |
+|-------------------|-------------|
+| `HeroSection`     | Full-width banner with title, subtitle, CTA |
+| `Testimonials`    | Customer feedback carousel or grid |
+| `ProductTeaser`   | Highlighted product or offer |
+| `ProductList`     | Grid of featured products |
+| `PostList`        | Paginated list of blog posts with tags, avatars |
+| `ContactForm`     | Builder-integrated form for contact |
+| `ImageGallery`    | Lightbox-enabled image collection |
+| `TextBlock`       | Rich-Text Block |
+| `PostQuote`       | Image with Quote Text |
+| `RelatedPost`     | Related Posts Grid |
+
+
+
+> 💡 All components are fully customizable from Builder.io and support dynamic props and bindings.
+
+---
+
+## 🧩 Builder Setup
+
+1. [Create a Builder.io Account](https://builder.io)
+2. Connect your space to this Next.js project
+3. Register components inside `/components/builder/` using the `Builder.registerComponent()` API
+4. Pages can be edited visually through Builder and rendered dynamically via `/page.tsx`
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the Repo
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+git clone https://github.com/your-org/your-builderio-project.git
+cd your-builderio-project
