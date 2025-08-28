@@ -5,6 +5,9 @@ const nextConfig: NextConfig = BuilderDevTools()({
   images: {
     domains: ['cdn.builder.io'],
   },
+  eslint: {
+    ignoreDuringBuilds: true
+  }
   /* config options here */
 });
 

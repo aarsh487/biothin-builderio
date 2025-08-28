@@ -1,9 +1,19 @@
 import React from "react";
 import { builder } from "@builder.io/sdk";
-import PostHeader from "@/components/PostPage/Header/PostHeader";
+import PostHeader from "@/components/PostPage/PostHeader";
 import { RenderBuilderContent } from "@/components/builder";
 
 builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
+
+export async function generateStaticParams () {
+  const pages = await builder.getAll("post-content", {
+    options: { noTargeting: true }
+  });
+
+  return pages.map((page) => ({
+    page: page.data?.url?.split("/").filter(Boolean) || []
+  }))
+}
 
 interface PageProps {
   params: Promise<{
@@ -23,7 +33,6 @@ export default async function Page(props: PageProps) {
     .toPromise();
 
     const { title, image, excerpt, author, tag, likes } = content.data;
-    console.log('content.data:', content?.data);
 
   return (
     <>
