@@ -12,8 +12,12 @@ import ContactForm from "./components/Posts/ContactForm";
 import QuoteBlock from "./components/PostPage/PostQuote";
 import { PostList } from "./components/Posts/PostList";
 import HorizontalRule from "./components/HorizontalRule";
+import { designTokens } from "./config/builders-design-token";
 
 builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
+
+Builder.register('editor.settings', designTokens)
+
 
 Builder.registerComponent(RegistryBanner, {
   name: "Registry Banner",

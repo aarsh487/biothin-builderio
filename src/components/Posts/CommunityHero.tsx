@@ -31,6 +31,7 @@ const CommunityHero: React.FC<CommunityHeroProps> = ({
           <div className="absolute inset-0 bg-gradient-to-r from-medium via-medium/10 to-transparent pointer-events-none" />
           <Image
             src={image}
+            fill
             alt="Community Hero"
             className="object-cover w-full h-full"
           />

@@ -31,8 +31,8 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
   })
 
   return {
-    title: content?.data?.metaTitle || 'Default title',
-    description: content?.data?.metaDescription || 'Default description',
+    title: content?.data?.title || 'Default title',
+    description: content?.data?.description || 'Default description',
     openGraph: {
       images: [content?.data?.metaImage],
     },

@@ -2,6 +2,7 @@ import React from "react";
 import { builder } from "@builder.io/sdk";
 import PostHeader from "@/components/PostPage/PostHeader";
 import { RenderBuilderContent } from "@/components/builder";
+import { Metadata } from "next";
 
 builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
 
@@ -20,6 +21,26 @@ interface PageProps {
     page: string[];
   }>;
 }
+
+export async function generateMetadata(props: PageProps): Promise<Metadata> {
+  const { page } = await props.params; 
+  const urlPath = '/' + (page?.join('/') || '');
+
+  const content = await builder.get('page', {
+    userAttributes: { urlPath },
+    prerender: false,
+  });
+
+  const metadata: Metadata = {
+    title: content?.data?.title || 'Default title',
+    description: content?.data?.description || 'Default description',
+    openGraph: {
+      images: [content?.data?.metaImage],
+    },
+  };
+  return metadata;
+}
+
 
 
 export default async function Page(props: PageProps) {

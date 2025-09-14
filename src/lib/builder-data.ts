@@ -2,34 +2,41 @@ import { builder } from "@builder.io/sdk";
 
 builder.init("b30935ed1b4247d2a9ae9ba92e629104");
 
-export interface HeaderLink {
+export interface NavChild {
   label: string;
   url: string;
 }
 
+export interface NavLink {
+  label: string;
+  url?: string;
+  type: "link" | "dropdown";
+  children?: NavChild[];
+}
+
 export interface NavigationData {
-  headerLinks?: HeaderLink[];
+  headerLinks?: NavLink[];
+  footerLinks?: NavLink[];
+  hamburger?: NavChild[];
 }
 
 export async function getNavigationData(): Promise<NavigationData> {
   try {
-    const { data } = await builder.get("navigation").promise();
-    return data || {};
+    const entry = await builder.get("navigation", { limit: 1 }).promise();
+    return entry?.data || {};
   } catch (error) {
     console.error("Error fetching navigation data:", error);
     return {};
   }
 }
 
-export async function getHeaderData(): Promise<HeaderLink[]> {
+// Convenience function to fetch only the top-level links
+export async function getHeaderData(): Promise<NavLink[]> {
   try {
-    const { data } = await builder.get("navigation").promise();
-    return data?.headerLinks || [];
+    const entry = await builder.get("navigation", { limit: 1 }).promise();
+    return entry?.data?.links || [];
   } catch (error) {
     console.error("Error fetching header data:", error);
     return [];
   }
 }
-
-
-
